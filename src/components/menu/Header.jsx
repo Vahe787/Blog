@@ -8,13 +8,13 @@ const Header = () => {
     <Router>
       <div>
         <nav>
-          <ul>
+          <ul className="flex font-mono p-5 text-3xl text-gray-500 ml-20">
             <li>
               <Link to="/">
                 <h2>Home</h2>
               </Link>
             </li>
-            <li>
+            <li className="ml-10">
               <Link to="/about">
                 <h2>About</h2>
               </Link>

@@ -1,10 +1,10 @@
 import React from "react";
-import Blog from "./components/Blog";
+import { Routing } from "./routes/Routing";
 
 function App() {
   return (
     <div>
-      <Blog />
+      <Routing />
     </div>
   );
 }

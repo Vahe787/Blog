@@ -1,24 +1,23 @@
-import { Input } from "../Input";
 import React from "react";
 import { useState } from "react";
 import { UserAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Input } from "../Input";
+import { async } from "@firebase/util";
 
-const SignUp = () => {
-  const [name, setName] = useState("");
-  const [surName, setSurName] = useState("");
+const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { createUser } = UserAuth();
   const navigate = useNavigate();
+  const { signIn } = UserAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      await createUser(email, password);
-      navigate("/signIn");
+      await signIn(email, password);
+      navigate("/account");
     } catch (e) {
       setError(e.message);
       console.log(error);
@@ -44,20 +43,7 @@ const SignUp = () => {
               <h1 className="mb-4 text-2xl font-mono text-center text-gray-400">
                 Sign up
               </h1>
-              <Input
-                handleValue={(e) => setName(e.target.value)}
-                text="Name"
-                type="text"
-                placeholder="Name"
-                value={name}
-              />
-              <Input
-                handleValue={(e) => setSurName(e.target.value)}
-                text="Surname"
-                type="text"
-                placeholder="Surname"
-                value={surName}
-              />
+
               <Input
                 handleValue={(e) => setEmail(e.target.value)}
                 text="Email"
@@ -77,14 +63,14 @@ const SignUp = () => {
                 className="block w-full px-4 py-2 mt-4 text-sm font-bold leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
                 href="#"
               >
-                Sign up
+                Sign In
               </button>
 
               <div className="mt-4 text-center">
                 <p className="text-sm font-bold">
-                  Have an account yet?
-                  <a href="/signIn" className="text-blue-600 hover:underline">
-                    Sign In
+                  Don't have an account yet?
+                  <a href="/" className="text-blue-600 hover:underline">
+                    Sign up.
                   </a>
                 </p>
               </div>
@@ -96,4 +82,4 @@ const SignUp = () => {
   );
 };
 
-export { SignUp };
+export { SignIn };

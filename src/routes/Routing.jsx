@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import { SignUp } from "../components/header/SignUp";
+import { SignUp } from "../components/header/signUp/SignUp";
 
 const Routing = () => {
   return (

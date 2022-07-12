@@ -5,7 +5,7 @@ import { UserAuth } from "../../../context/AuthContext";
 
 const SignInWithGmail = () => {
   const [error, setError] = useState("");
-  const { signInWithGmail } = UserAuth();
+  const { signInWithWeb } = UserAuth();
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
 
@@ -13,7 +13,7 @@ const SignInWithGmail = () => {
     e.preventDefault();
     setError("");
     try {
-      await signInWithGmail(provider);
+      await signInWithWeb(provider);
       navigate("/account");
       console.log("You are siggned in!");
     } catch (e) {

@@ -23,7 +23,7 @@ const AuthContextProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const signInWithGmail = (provider) => {
+  const signInWithWeb = (provider) => {
     return signInWithPopup(auth, provider);
   };
 
@@ -44,7 +44,7 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ createUser, user, logout, signIn, signInWithGmail }}
+      value={{ createUser, user, logout, signIn, signInWithWeb }}
     >
       {children}
     </UserContext.Provider>

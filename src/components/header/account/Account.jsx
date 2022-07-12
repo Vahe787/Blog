@@ -18,9 +18,10 @@ const Account = () => {
 
   return (
     <div className="font-mono font-bold text-gray-500">
-      <h1>Account</h1>
-      <h3>{user && user.displayName}</h3>
-      <button onClick={handleLogout}>Logout</button>
+      <div>
+        <p className="text-2xl">{user && user.displayName}</p>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
     </div>
   );
 };

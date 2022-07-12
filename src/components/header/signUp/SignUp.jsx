@@ -3,6 +3,8 @@ import React from "react";
 import { useState } from "react";
 import { UserAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../../../firebase/firebase";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -18,7 +20,11 @@ const SignUp = () => {
     setError("");
     try {
       await createUser(email, password);
+      updateProfile(auth.currentUser, {
+        displayName: `${name} ${surName}`,
+      });
       navigate("/signIn");
+      console.log("You are siggned up!");
     } catch (e) {
       setError(e.message);
       console.log(error);

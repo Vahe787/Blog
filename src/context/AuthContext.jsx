@@ -14,6 +14,7 @@ const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   const createUser = (email, password) => {
+    console.log(auth);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
@@ -27,7 +28,7 @@ const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unesubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
+      // console.log(currentUser);
       setUser(currentUser);
     });
 

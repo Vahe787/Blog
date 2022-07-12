@@ -1,12 +1,25 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import { SignUp } from "../components/header/signUp/SignUp";
-import { SignIn } from "../components/header/signIn/SignIn";
+import {
+  Account,
+  ProtectedRouteToAccount,
+  SignIn,
+  SignUp,
+} from "../components/header";
 import { AuthContextProvider } from "../context/AuthContext";
-import { ProtectedRouteToAccount } from "../components/header/ProtectedRouteToAccount";
-import { Account } from "../components/header/account/Account";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebase";
 
 const Routing = () => {
+  const [isSignIn, setIsSignIn] = useState(false);
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setIsSignIn(true);
+    } else {
+      setIsSignIn(false);
+    }
+  });
+
   return (
     <Router>
       <div>
@@ -17,16 +30,22 @@ const Routing = () => {
                 <h2 className="hover:text-gray-700">Home</h2>
               </Link>
             </li>
-            <li className="ml-auto">
-              <Link to="/signIn">
-                <h2 className="hover:text-gray-700">SignIn</h2>
-              </Link>
-            </li>
-            <li className="pl-4">
-              <Link to="/">
-                <h2 className="hover:text-gray-700">SignUp</h2>
-              </Link>
-            </li>
+            {isSignIn ? (
+              <></>
+            ) : (
+              <div className="flex ml-auto">
+                <li>
+                  <Link to="/signIn">
+                    <h2 className="hover:text-gray-700">SignIn</h2>
+                  </Link>
+                </li>
+                <li className="pl-4">
+                  <Link to="/">
+                    <h2 className="hover:text-gray-700">SignUp</h2>
+                  </Link>
+                </li>
+              </div>
+            )}
           </ul>
         </nav>
         <AuthContextProvider>

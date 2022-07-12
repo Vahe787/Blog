@@ -17,9 +17,9 @@ const Account = () => {
   };
 
   return (
-    <div>
+    <div className="font-mono font-bold text-gray-500">
       <h1>Account</h1>
-      <h3>User Email:{user && user.name}</h3>
+      <h3>{user && user.displayName}</h3>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );

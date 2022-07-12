@@ -3,7 +3,7 @@ import { useState } from "react";
 import { UserAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../Input";
-import { async } from "@firebase/util";
+import { SignInWithFacebook, SignInWithGmail } from "../../../constants";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -66,6 +66,10 @@ const SignIn = () => {
               >
                 Sign In
               </button>
+              <div className="flex justify-center items-center mt-3">
+                <SignInWithGmail />
+                <SignInWithFacebook />
+              </div>
 
               <div className="mt-4 text-center">
                 <p className="text-sm font-bold">

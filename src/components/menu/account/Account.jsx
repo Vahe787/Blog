@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../../../context/AuthContext";
+import { CreateUserImg } from "../CreateUserImg";
 
 const Account = () => {
   const { user, logout } = UserAuth();
@@ -10,6 +11,7 @@ const Account = () => {
     try {
       await logout();
       navigate("/signIn");
+      console.log(user);
       console.log("You are logged out!");
     } catch (e) {
       console.log(e.message);
@@ -17,9 +19,12 @@ const Account = () => {
   };
 
   return (
-    <div className="font-mono font-bold text-gray-500">
+    <div>
       <div>
-        <p className="text-2xl">{user && user.displayName}</p>
+        <p className="text-2xl font-mono font-bold text-gray-500">
+          {user && user.displayName}
+        </p>
+        <CreateUserImg />
         <button onClick={handleLogout}>Logout</button>
       </div>
     </div>

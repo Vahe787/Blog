@@ -1,11 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import {
-  Account,
-  ProtectedRouteToAccount,
-  SignIn,
-  SignUp,
-} from "../components/header";
+import { ProtectedRouteToAccount, SignIn, SignUp } from "../components/header";
+import { Account } from "../components/menu/account/Account";
 import { AuthContextProvider } from "../context/AuthContext";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/firebase";

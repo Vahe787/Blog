@@ -5,9 +5,11 @@ import {
   signOut,
   onAuthStateChanged,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 
-import { auth } from "../firebase/firebase";
+import { auth, storage } from "../firebase/firebase";
+import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
 const UserContext = createContext();
 
@@ -31,6 +33,10 @@ const AuthContextProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const upload = (file, currentUser, setLoading) => {
+    return updateProfile(file, currentUser, setLoading);
+  };
+
   useEffect(() => {
     const unesubscribe = onAuthStateChanged(auth, (currentUser) => {
       // console.log(currentUser);
@@ -44,7 +50,7 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ createUser, user, logout, signIn, signInWithWeb }}
+      value={{ createUser, user, logout, signIn, signInWithWeb, upload }}
     >
       {children}
     </UserContext.Provider>

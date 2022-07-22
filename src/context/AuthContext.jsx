@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 
 import { auth, storage } from "../firebase/firebase";
-import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const UserContext = createContext();
 
@@ -33,8 +33,15 @@ const AuthContextProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const upload = (file, currentUser, setLoading) => {
-    return updateProfile(file, currentUser, setLoading);
+  const upload = async (file, currentUser, setLoading) => {
+    const fileRef = ref(storage, currentUser.uid + ".png");
+    setLoading(true);
+
+    await uploadBytes(fileRef, file);
+    const photoURL = await getDownloadURL(fileRef);
+
+    updateProfile(currentUser, { photoURL });
+    setLoading(false);
   };
 
   useEffect(() => {

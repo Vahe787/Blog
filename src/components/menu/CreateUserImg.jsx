@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 
 import { UserAuth } from "../../context/AuthContext";
-import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
-import { storage } from "../../firebase/firebase";
 
 const CreateUserImg = () => {
   const { user } = UserAuth();
+  const { upload } = UserAuth();
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [photoURL, setPhotoURL] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
   );
-
-  const { upload } = UserAuth();
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -20,17 +17,8 @@ const CreateUserImg = () => {
     }
   };
 
-  const handleClick = async (e) => {
-    try {
-      await upload(photo, user.uid, setLoading);
-      const fileRef = ref(storage, user.uid + ".png");
-      setLoading(true);
-      const snapshot = await uploadBytes(fileRef, photo);
-      const photoURL = await getDownloadURL(fileRef);
-      setLoading(false);
-    } catch (error) {
-      throw new Error(error);
-    }
+  const handleClick = () => {
+    upload(photo, user, setLoading, setPhotoURL);
   };
 
   useEffect(() => {

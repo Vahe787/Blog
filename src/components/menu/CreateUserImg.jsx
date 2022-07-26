@@ -29,15 +29,27 @@ const CreateUserImg = () => {
 
   return (
     <div>
-      <input type="file" onChange={handleChange} />
-      <button disabled={loading || !photo} onClick={handleClick}>
-        Upload
-      </button>
-      <img
-        src={photoURL}
-        alt="Avatar "
-        className="align-middle rounded-full border-2 border-gray-400 border-solid w-20 h20"
-      />
+      <div className="flex justify-center">
+        <img
+          src={photoURL}
+          alt="Avatar "
+          className="align-middle rounded-full border-2 border-gray-400 border-solid w-28"
+        />
+        {/* <input type="file" id="upload" hidden onChange={handleChange} />
+        <label
+          className="inline-block text-gray-400 border p-3 cursor-pointer"
+          for="upload"
+        >
+          Choose File
+        </label>
+        <button
+          className="font-mono p-2 text-2xl text-gray-400 hover:text-gray-700 border"
+          disabled={loading || !photo}
+          onClick={handleClick}
+        >
+          Upload
+        </button> */}
+      </div>
     </div>
   );
 };

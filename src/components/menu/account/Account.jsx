@@ -19,14 +19,14 @@ const Account = () => {
   };
 
   return (
-    <div>
-      <div>
-        <p className="text-2xl font-mono font-bold text-gray-500">
+    <div className="pl-7 ">
+      <div className="p-8 w-72">
+        <CreateUserImg />
+        <p className="flex justify-center text-2xl font-mono font-bold text-gray-500 mt-2">
           {user && user.displayName}
         </p>
-        <CreateUserImg />
-        <button onClick={handleLogout}>Logout</button>
       </div>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };

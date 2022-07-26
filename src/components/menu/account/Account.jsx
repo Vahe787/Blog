@@ -19,8 +19,8 @@ const Account = () => {
   };
 
   return (
-    <div className="pl-7 ">
-      <div className="p-8 w-72">
+    <div className="">
+      <div className="w-60 pt-10">
         <CreateUserImg />
         <p className="flex justify-center text-2xl font-mono font-bold text-gray-500 mt-2">
           {user && user.displayName}

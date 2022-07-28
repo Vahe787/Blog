@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GoogleAuthProvider } from "firebase/auth";
 import { UserAuth } from "../../../context/AuthContext";
+import logo from "./googlelogo.png";
 
 const SignInWithGmail = () => {
   const [error, setError] = useState("");
@@ -25,9 +26,9 @@ const SignInWithGmail = () => {
   return (
     <button
       onClick={handleSubmit}
-      className="w-12 font-bold p-2 shadow-xl rounded-xl transition hover:bg-blue-200"
+      className="font-bold p-1 shadow-xl rounded-xl transition hover:bg-blue-200"
     >
-      <img src="https://freesvg.org/img/1534129544.png" className="w-8" />
+      <img src={logo} className="w-10" />
     </button>
   );
 };

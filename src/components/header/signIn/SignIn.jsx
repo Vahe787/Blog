@@ -27,18 +27,18 @@ const SignIn = () => {
 
   return (
     <div className="flex items-center bg-gray-50">
-      <div className="flex-1 h-full max-w-4xl mx-auto bg-white rounded-lg shadow-xl mt-10 mb-10">
-        <div className="flex flex-col md:flex-row font-mono ">
-          <div className="h-32 md:h-auto md:w-1/2">
+      <div className="w-1/2 h-full max-w-4xl mx-auto bg-white rounded-lg shadow-xl mt-10 mb-10">
+        <div className="flex  justify-center md:flex-row font-mono">
+          {/* <div className="h-32 md:h-auto md:w-1/2">
             <img
               className="object-cover w-full h-full"
               src="https://source.unsplash.com/user/erondu/1600x900"
               alt="img"
             />
-          </div>
+          </div> */}
           <form
             onSubmit={handleSubmit}
-            className="flex items-center justify-center p-6 sm:p-12 md:w-1/2"
+            className="flex items-center justify-center p-6 sm:p-12 md:w-2/3"
           >
             <div className="w-full">
               <h1 className="mb-4 text-2xl font-mono text-center text-gray-400">

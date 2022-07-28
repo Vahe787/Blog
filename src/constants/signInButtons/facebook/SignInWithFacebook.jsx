@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FacebookAuthProvider } from "firebase/auth";
 import { UserAuth } from "../../../context/AuthContext";
+import logo from "./fblogo.png";
 
 const SignInWithFacebook = () => {
   const [error, setError] = useState("");
@@ -27,10 +28,7 @@ const SignInWithFacebook = () => {
       onClick={handleSubmit}
       className="font-bold p-2 shadow-xl rounded-xl transition hover:bg-blue-200 ml-3"
     >
-      <img
-        src="https://baj.by/sites/default/files/event/text-images/fb.png"
-        className="w-10"
-      />
+      <img src={logo} className="w-10" />
     </button>
   );
 };

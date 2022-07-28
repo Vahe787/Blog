@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 import { UserAuth } from "../../context/AuthContext";
+import { storage } from "../../firebase/firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { EditAccount } from "./editAccount/EditAccount";
 
 const CreateUserImg = () => {
   const { user } = UserAuth();
@@ -10,6 +13,7 @@ const CreateUserImg = () => {
   const [photoURL, setPhotoURL] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
   );
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -17,8 +21,25 @@ const CreateUserImg = () => {
     }
   };
 
-  const handleClick = () => {
-    upload(photo, user, setLoading, setPhotoURL);
+  // const handleClick = () => {
+  //   upload(photo, user, setLoading);
+  // };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    setError("");
+    const fileRef = ref(storage, user.uid + ".png");
+    try {
+      setLoading(true);
+      await uploadBytes(fileRef, photo);
+      setPhotoURL(await getDownloadURL(fileRef));
+      await upload(user, photo);
+      setLoading(false);
+      console.log("File Uploaded!");
+    } catch (e) {
+      setError(e.message);
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -38,7 +59,7 @@ const CreateUserImg = () => {
         {/* <input type="file" id="upload" hidden onChange={handleChange} />
         <label
           className="inline-block text-gray-400 border p-3 cursor-pointer"
-          for="upload"
+          htmlFor="upload"
         >
           Choose File
         </label>

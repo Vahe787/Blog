@@ -5,6 +5,7 @@ import { Account } from "../components/menu/account/Account";
 import { AuthContextProvider } from "../context/AuthContext";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/firebase";
+import { EditAccount } from "../components/menu/editAccount/EditAccount";
 
 const Routing = () => {
   const [isSignIn, setIsSignIn] = useState(false);
@@ -26,6 +27,7 @@ const Routing = () => {
                 <h2 className="hover:text-gray-700">Home</h2>
               </Link>
             </li>
+
             {isSignIn ? (
               <></>
             ) : (
@@ -49,6 +51,7 @@ const Routing = () => {
             <Routes>
               <Route path="/" element={<SignUp />}></Route>
               <Route path="/signIn" element={<SignIn />}></Route>
+
               <Route
                 path="/account"
                 element={
@@ -57,6 +60,7 @@ const Routing = () => {
                   </ProtectedRouteToAccount>
                 }
               ></Route>
+              <Route path="/editProfile" element={<EditAccount />}></Route>
             </Routes>
           </Fragment>
         </AuthContextProvider>

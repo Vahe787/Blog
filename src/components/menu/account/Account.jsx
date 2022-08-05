@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../../../context/AuthContext";
-import { CreateUserImg } from "../CreateUserImg";
+import { CreateUserImg } from "../uploadAvatarImage/CreateUserImg";
 
 const Account = () => {
   const { user, logout } = UserAuth();
-  const [editProfile, setEditProfile] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,14 +20,8 @@ const Account = () => {
   };
 
   const handleClick = () => {
-    setEditProfile((prev) => !prev);
+    navigate("/editProfile");
   };
-
-  useEffect(() => {
-    if (editProfile) {
-      navigate("/editProfile");
-    }
-  }, [editProfile]);
 
   return (
     <div className="ml-10">

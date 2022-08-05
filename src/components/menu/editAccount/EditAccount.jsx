@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { UserAuth } from "../../../context/AuthContext";
+import { CreateUserImg } from "../uploadAvatarImage/CreateUserImg";
 
 const EditAccount = () => {
   const { user } = UserAuth();
@@ -8,11 +9,7 @@ const EditAccount = () => {
     <div>
       <div className="flex felx-col justify-center">
         <div>
-          <img
-            alt="Avatar "
-            className="align-middle rounded-full border-2 border-gray-400 border-solid w-28"
-            src={user.photoURL}
-          />
+          <CreateUserImg />
         </div>
       </div>
       <div className=" flex justify-center items-center mt-5">

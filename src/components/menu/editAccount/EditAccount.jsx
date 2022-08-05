@@ -15,7 +15,7 @@ const EditAccount = () => {
       <div className=" flex justify-center items-center mt-5">
         <input
           defaultValue={user.displayName}
-          className="border outline-none w-1/3"
+          className="border outline-none w-1/4 p-1 text-center text-2xl text-gray-700"
         />
       </div>
     </div>
